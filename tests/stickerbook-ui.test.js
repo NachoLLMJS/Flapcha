@@ -46,6 +46,7 @@ test('desktop matches the wide reference hierarchy and one-viewport layout', () 
   assert.match(styles, /height:100dvh/);
   assert.match(styles, /grid-template-columns:29\.5% 37% 33\.5%/);
   assert.match(styles, /grid-template-rows:minmax\(0,1fr\) 226px/);
+  assert.match(styles, /@media\(max-height:980px\) and \(min-width:1181px\)\{\.capsule-machine\{transform:scale\(\.96\);transform-origin:50% 100%\}\}/);
 });
 
 test('mobile stacks the machine before the operational cards', () => {
