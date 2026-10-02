@@ -72,6 +72,13 @@ test('the themed typography is local and machine cabinet labels are removed', ()
   assert.doesNotMatch(source, /RANDOM<br \/>CREATURE/);
 });
 
+test('the Flapcha header wordmark uses white Pokémon lettering with a black outline', () => {
+  assert.match(styles, /\.vending-brand strong\{[^}]*font-family:'PokemonSolid'/);
+  assert.match(styles, /\.vending-brand strong\{[^}]*color:#fff/);
+  assert.match(styles, /\.vending-brand strong\{[^}]*-webkit-text-stroke:[^;]*#080808/);
+  assert.match(styles, /\.vending-brand strong span\{color:inherit\}/);
+});
+
 test('the Emerald bicycle loader reveals Flapcha and Launch after 1.5 seconds', () => {
   assert.match(source, /pokemon-emerald-bicycle\.webm/);
   assert.match(source, /setTimeout\(\(\) => setLoaderReady\(true\), 1500\)/);
