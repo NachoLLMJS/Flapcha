@@ -77,6 +77,7 @@ test('the Flapcha header wordmark uses white Pokémon lettering with a black out
   assert.match(styles, /\.vending-brand strong\{[^}]*color:#fff/);
   assert.match(styles, /\.vending-brand strong\{[^}]*-webkit-text-stroke:[^;]*#080808/);
   assert.match(styles, /\.vending-brand strong span\{color:inherit\}/);
+  assert.match(styles, /\.vending-brand small\{margin-top:12px/);
 });
 
 test('the Emerald bicycle loader reveals Flapcha and Launch after 1.5 seconds', () => {
