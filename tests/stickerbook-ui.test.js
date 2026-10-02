@@ -62,6 +62,8 @@ test('header routes expose launch, profile and market-cap launchpad views', () =
   for (const label of ['Launch', 'My Profile', 'Launchpad', 'About']) assert.match(source, new RegExp(`>${label}<`));
   assert.match(source, /className="vending-brand" href="#launch"/);
   assert.doesNotMatch(source, /className="vending-brand" href="#top"/);
+  assert.match(source, /const VALID_VIEWS = new Set\(\['launch', 'profile', 'launchpad', 'about'\]\)/);
+  assert.match(source, /VALID_VIEWS\.has\(hash\) \? hash : 'launch'/);
   assert.match(source, /view === 'profile'/);
   assert.match(source, /view === 'launchpad'/);
   assert.match(source, /launchpadRows/);

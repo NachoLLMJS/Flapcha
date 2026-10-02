@@ -14,6 +14,8 @@ const api = async (path, options) => {
 const short = (value) => value ? `${value.slice(0, 6)}…${value.slice(-4)}` : '';
 const withoutTerminalStop = (value) => String(value || '').replace(/[.]\s*$/, '');
 const pokemonAsset = (name) => `/assets/pokemon/${name}.png`;
+const VALID_VIEWS = new Set(['launch', 'profile', 'launchpad', 'about']);
+const getView = () => { const hash = window.location.hash.replace('#', ''); return VALID_VIEWS.has(hash) ? hash : 'launch'; };
 const SHOWCASE_POKEMON = { speciesId: 6, name: 'Charizard', symbol: 'FLAME', nature: 'Brave', shiny: false, image: pokemonAsset('charizard'), normalImage: pokemonAsset('charizard'), shinyImage: pokemonAsset('charizard-shiny'), types: ['Fire', 'Flying'], description: 'Charizard is a powerful and noble Pokémon, known for its unwavering spirit and burning desire to become stronger. It represents ambition, freedom, and the courage to take on any challenge.' };
 const SHOWCASE_LAUNCHES = [
   { name: 'Charizard', symbol: 'CHAR', image: pokemonAsset('charizard'), type: 'Fire', market: '$142K', holders: '1,240' },
@@ -32,13 +34,13 @@ function App() {
   const [phase, setPhase] = useState('idle');
   const [notice, setNotice] = useState('');
   const [result, setResult] = useState(null);
-  const [view, setView] = useState(() => window.location.hash.replace('#', '') || 'launch');
+  const [view, setView] = useState(getView);
   const [loaderVisible, setLoaderVisible] = useState(true);
   const [loaderReady, setLoaderReady] = useState(false);
   useEffect(() => { api('/api/config').then(setConfig).catch((error) => setNotice(error.message)); }, []);
   useEffect(() => { const timer = window.setTimeout(() => setLoaderReady(true), 1500); return () => window.clearTimeout(timer); }, []);
   useEffect(() => {
-    const syncView = () => setView(window.location.hash.replace('#', '') || 'launch');
+    const syncView = () => setView(getView());
     window.addEventListener('hashchange', syncView);
     return () => window.removeEventListener('hashchange', syncView);
   }, []);
