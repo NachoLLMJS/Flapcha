@@ -106,7 +106,7 @@ function App() {
       <small className="loader-credit">Emerald bicycle scene by christt105 · Pokémon graphics © Nintendo / Game Freak</small>
     </section>}
     <header className="vending-header">
-      <a className="vending-brand" href="#top" aria-label="Flapcha home"><Pokeball /><span><strong>FLAP<span>CHA</span></strong><small>MINT CREATURES. LAUNCH TOKENS. BUILD TOGETHER.</small></span></a>
+      <a className="vending-brand" href="#launch" aria-label="Flapcha home"><Pokeball /><span><strong>FLAP<span>CHA</span></strong><small>MINT CREATURES. LAUNCH TOKENS. BUILD TOGETHER.</small></span></a>
       <nav aria-label="Main navigation"><a className={view === 'launch' ? 'active' : ''} href="#launch">Launch</a><a className={view === 'profile' ? 'active' : ''} href="#profile">My Profile</a><a className={view === 'launchpad' ? 'active' : ''} href="#launchpad">Launchpad</a><a className={view === 'about' ? 'active' : ''} href="#about">About</a></nav>
       <label className="search-box"><i aria-hidden="true" /><input aria-label="Search" placeholder="Search creatures, tokens, or wallets" /><kbd>⌘ K</kbd></label>
       <button className="wallet-pill" onClick={connect}><span className="wallet-status" />{account ? short(account) : 'Connect Wallet'}</button>

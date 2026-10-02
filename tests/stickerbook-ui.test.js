@@ -17,6 +17,7 @@ test('capsule machine asset and mystery reveal remain central', () => {
   assert.match(source, /Mystery Pokémon/);
   assert.match(source, /machine-launch/);
   assert.match(source, /activeAction/);
+  assert.match(styles, /\.machine-launch\{[^}]*bottom:9\.5%[^}]*width:53%[^}]*height:38px/);
 });
 
 test('real dapp controls remain wired into the reference-led surface', () => {
@@ -53,11 +54,14 @@ test('mobile stacks the machine before the operational cards', () => {
   assert.match(styles, /@media\(max-width:760px\)/);
   assert.match(styles, /\.vending-workspace\{display:flex;flex-direction:column/);
   assert.match(styles, /\.capsule-machine\{order:-1/);
+  assert.match(styles, /\.machine-launch\{bottom:23\.3%;width:56%;height:34px;font-size:9px\}/);
   assert.match(styles, /\.vending-cards\{height:auto;grid-template-columns:repeat\(2,1fr\)/);
 });
 
 test('header routes expose launch, profile and market-cap launchpad views', () => {
   for (const label of ['Launch', 'My Profile', 'Launchpad', 'About']) assert.match(source, new RegExp(`>${label}<`));
+  assert.match(source, /className="vending-brand" href="#launch"/);
+  assert.doesNotMatch(source, /className="vending-brand" href="#top"/);
   assert.match(source, /view === 'profile'/);
   assert.match(source, /view === 'launchpad'/);
   assert.match(source, /launchpadRows/);
